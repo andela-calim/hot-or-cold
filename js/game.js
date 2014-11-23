@@ -19,6 +19,7 @@ var guessInput = document.getElementById("guess");
 var submitButton = document.getElementById("submitBtn");
 var newGameButton = document.getElementById("newGameBtn");
 var hotOrCold = document.getElementById("hot-cold")
+var tempLevel = document.getElementById("slide");
 
 var generateRandomNumber = function () {
 
@@ -76,29 +77,38 @@ var compare = function (verifiedGuess, oldVerifiedGuess) {
 		console.log("old diff: " + old);
 		console.log("current diff: " + current);
 
+			slide.max = setMaxTemp();
+			console.log("slide max temp: " + slide.max);
+			slide.value = setcurrentTemp();
+			console.log("slide current temp: " + slide.value);
+
 		if (old < current) { // distance from answer is increasing
 			console.log("cold");
 
 			hotOrCold.innerHTML = "Cold!";
-			guessInput.value = ""
+			guessInput.value = "";
+			
 			// oldVerifiedGuess = verifiedGuess;
 			// beginProcess(verifiedGuess);
 		} else if (current < old) { // distance from answer is decreasing
 			console.log("hot");
 
 			hotOrCold.innerHTML = "Hot!!!";
-			guessInput.value = ""
+			guessInput.value = "";
+			
 			// oldVerifiedGuess = verifiedGuess;
 			// beginProcess(verifiedGuess);
 		} else {
 
 			hotOrCold.innerHTML = "Lukewarm Boss. Now how smart where you?";
 			console.log("lukewarm. guess cat's outer the bag");
-			guessInput.value = ""
+			guessInput.value = "";
+			
 			// beginProcess(verifiedGuess);
 		}
 		
 	} else { // correct guess
+
 		console.log("Calling correctGuess()");
 		correctGuess();
 	}
@@ -126,6 +136,16 @@ var showSubmitBtn = function() {
 	submitButton.style.display = 'inline-block';
 
 	reset();
+}
+
+var setMaxTemp = function () {
+	var maxTemp = Math.max( Math.abs(100 - answer), answer );
+	return maxTemp;
+}
+var setcurrentTemp = function () {
+	var maxTemp = setMaxTemp();
+	var currentTemp = maxTemp - Math.abs(answer - verifiedGuess);
+	return currentTemp;
 }
 
 /*********************************************/
