@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/main.css">
+		<title>Hot or Cold</title>
+	</head>
+	<body>
+		<header>
+			<h1>Hot or Cold</h1>
+		</header>
+		<section id="description">
+			<p>Guess the secret number by entering an integer between 0 and 100</p>
+		</section>
+		<section id="main-game">
+			<fieldset>
+				<legend>Play Game</legend>
+				<div id="guesstimate">
+					<label for="guess">Your guess</label>
+					<input type="text" id="guess" name="user_guess" maxlength="3" required>
+				</div>
+				<div id="buttons">
+					<button type="submit" id="submitBtn">Submit</button>
+					<button type="submit" id="newGameBtn">New game</button>
+				</div>
+				<div id="slider">
+					Cold 
+					<input id="slide" type="range" min="0" max="100" step="1" value="0">
+					Hot
+				</div>
+			</fieldset>
+
+
+			<div>
+			<p id="hot-cold">Whenever you're ready, BOSS!</p>
+			</div>
+		</section>
+    
+		<script src="js/game.js"></script>
+	</body>
+</html>
