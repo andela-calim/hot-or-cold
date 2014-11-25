@@ -53,7 +53,7 @@ input[type='range'] {
 }
 
 fieldset {
-	margin: 1em 25%;
+	margin: 1em auto;
 	border: 2px solid #000;
 	max-width: 25em;
 }
