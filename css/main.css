@@ -4,16 +4,18 @@
 body {
 	width: 100%;
 	text-align: center;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
+	/*background: url("../img/bg-main.jpg") no-repeat;
+	background-size: cover;*/
 }
 h1 {
-	font-size: 3rem;
-	margin: 2%;
+	font-size: 2.5rem;
+	margin: 1%;
 	padding: 2%;
 }
 p {
-	font-size: 2rem;
-	padding: 2%;
+	font-size: 1.5rem;
+	padding: 1%;
 }
 
 #guesstimate {
@@ -30,11 +32,11 @@ input {
 	padding: 0.1em 0.5em;
 	margin: 0.1em 0 0.4em;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 button {
-	font-size: 1.3rem;
+	font-size: 1rem;
 	padding: 0.5em 1.7em;
 	margin: 0.5em 0.5em 0.7em;
 }
@@ -51,7 +53,7 @@ input[type='range'] {
 }
 
 fieldset {
-	margin: 0 25%;
+	margin: 1em 25%;
 	border: 2px solid #000;
 	max-width: 25em;
 }

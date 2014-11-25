@@ -1,155 +1,170 @@
 
-window.onload = function () {
-	reset();
-}
+var hotOrCold = {
 
-var reset = function ()  {
-	counter = 0;
-	verifiedGuess = 0;
-	oldVerifiedGuess = 0;
-	randomGuess = 0;
-	guessInput.value = "";
-	hotOrCold.innerHTML = "Whenever you're ready, BOSS!";
+	init: function () {
+		guessInput = document.getElementById("guess");
+		guessInput.focus();
+		submitButton = document.getElementById("submitBtn");
+		newGameButton = document.getElementById("newGameBtn");
+		visuals = document.getElementById("visuals");
+		tempLevel = document.getElementById("slide");
 
-	answer = generateRandomNumber();
-	console.log("answer: " + answer);
-// 	beginProcess(verifiedGuess);
-}
-var guessInput = document.getElementById("guess");
-var submitButton = document.getElementById("submitBtn");
-var newGameButton = document.getElementById("newGameBtn");
-var hotOrCold = document.getElementById("hot-cold")
-var tempLevel = document.getElementById("slide");
+		this.resetter();
+	},
 
-var generateRandomNumber = function () {
+	resetter: function ()  {
+		/// Declaration of variables ///
+		counter = 0;
+		verifiedGuess = 0;
+		oldVerifiedGuess = 0;
+		randomGuess = 0;
 
-	// set random number to a global variable
-	var answer = Math.floor( Math.random() * 101 );
-	return answer;
-}
-
-var beginProcess = function () {
-
-
-	oldVerifiedGuess = verifiedGuess;
-
-	verifiedGuess = guessInput.value;
-	// Receive input from user
-	// alert(answer);
-	// randomGuess = prompt("Guess the number!", "Enter number");
-	console.log("answer is: " + answer);
-
-	// Validify user input, calling checkValid function
-	verifiedGuess = checkValid();
-	
-	if (verifiedGuess) {
-
-		
-		console.log("old verifiedG:" + oldVerifiedGuess);
-		console.log("verifiedG:" + verifiedGuess);
-
-		counter ++;
-
-		// Compare answer with guess
-		compare (verifiedGuess, oldVerifiedGuess);
-	}	
-}
-
-var  checkValid = function () {
-	var randyGuess = guessInput.value;
-	if ( parseFloat(randyGuess) == parseInt(randyGuess) && !isNaN(randomGuess) ) { 
-		return randyGuess;
-	} else { 
-		alert("Input a number (e.g 1, 2, 3...)");
 		guessInput.value = "";
-		return 0;
-	}
-}
+		slide.value = 0;
+		visuals.innerHTML = "Whenever you're ready, BOSS!";
 
-var compare = function (verifiedGuess, oldVerifiedGuess) {
+		// Calls random number generator and assigns to answer
+		answer = this.generateRandomNumber(); 
 
-	// Check if guess is answer
-	if (verifiedGuess != answer) { // wrong guess
+		/// CHEAT: Show answer! ///
+		console.log("Secret answer: " + answer);
 
-		// compare proximity of new and previous guess with the answer
-		var old = Math.abs(oldVerifiedGuess - answer);
-		var current = Math.abs(verifiedGuess - answer);
-		console.log("old diff: " + old);
-		console.log("current diff: " + current);
+		/* Set click handlers */
+		submitButton.onclick = this.beginProcess; // Begins Game
+		newGameButton.onclick = this.showSubmitBtn; // New Game
+	},
 
-			slide.max = setMaxTemp();
-			console.log("slide max temp: " + slide.max);
-			slide.value = setcurrentTemp();
-			console.log("slide current temp: " + slide.value);
+	generateRandomNumber: function () {
 
-		if (old < current) { // distance from answer is increasing
-			console.log("cold");
+		// generate random number
+		var answer = Math.floor( Math.random() * 101 );
+		return answer;
+	},
 
-			hotOrCold.innerHTML = "Cold!";
-			guessInput.value = "";
-			
-			// oldVerifiedGuess = verifiedGuess;
-			// beginProcess(verifiedGuess);
-		} else if (current < old) { // distance from answer is decreasing
-			console.log("hot");
-
-			hotOrCold.innerHTML = "Hot!!!";
-			guessInput.value = "";
-			
-			// oldVerifiedGuess = verifiedGuess;
-			// beginProcess(verifiedGuess);
-		} else {
-
-			hotOrCold.innerHTML = "Lukewarm Boss. Now how smart where you?";
-			console.log("lukewarm. guess cat's outer the bag");
-			guessInput.value = "";
-			
-			// beginProcess(verifiedGuess);
-		}
+	beginProcess: function () {
+		oldVerifiedGuess = verifiedGuess;
+		//verifiedGuess = guessInput.value;
+		console.log("old guess: " + oldVerifiedGuess);
 		
-	} else { // correct guess
 
-		console.log("Calling correctGuess()");
-		correctGuess();
+		/// Validify user input ///
+		/* Callng checkValid function */
+		verifiedGuess = hotOrCold.checkValidity();
+		console.log("new guess: " + verifiedGuess);
+		
+		if (verifiedGuess) { // If guess is OK		
+			
+			// Increment counter
+			counter ++;
+
+			// Compare answer with guess
+			hotOrCold.compare(verifiedGuess, oldVerifiedGuess); // Calling compare function
+		}	
+	},
+
+	checkValidity: function () {
+		// Get and assign user's guess
+		var randyGuess = guessInput.value;
+		console.log("Received Randy guess: " + randyGuess);
+		
+		/// Validate user guess ///
+		/* If guess is an integer */
+		if ( parseFloat(randyGuess) == parseInt(randyGuess) && !isNaN(randyGuess) ) {
+			if ( randyGuess < 0 || randyGuess > 100 ) { // if guess is a negative integer
+				console.log("Invalid Input! Range is: 0 - 100");
+				alert("Invalid Input! Range is: 0 - 100");
+			} else { // guess is OK
+				console.log("Valid Randy guess: " + randyGuess);
+				return randyGuess;	
+			}
+			
+		} else { /* guess is not an integer */
+			alert("Invalid Input!!!. Input a WHOLE NUMBER (e.g 1, 2, 3...)");
+			guessInput.value = "";
+			console.log("Invalid Randy guess: " + randyGuess);
+			return 0;
+		}
+	},
+
+	compare: function (verifiedGuess, oldVerifiedGuess) {
+		// Call setMaxTemp and setCurrentTemp
+		slide.max = this.setMaxTemp(); // sets max value for the input [type=range] element
+		console.log("slide max temp: " + slide.max);
+		slide.value = this.setcurrentTemp(); // sets current value for the input [type=range] element
+		console.log("slide current temp: " + slide.value);
+
+		// Check if guess is answer
+		if (verifiedGuess != answer) { // wrong guess
+			// compare proximity of new and previous guess with the answer
+			var old = Math.abs(oldVerifiedGuess - answer);
+			var current = Math.abs(verifiedGuess - answer);
+			console.log("old diff: " + old);
+			console.log("current diff: " + current);
+
+			
+
+			if (old < current) { // distance from answer is increasing
+				console.log("cold");
+
+				visuals.innerHTML = "Cold!";
+				guessInput.value = ""; // clear input field
+				
+			} else if (current < old) { // distance from answer is decreasing
+				console.log("hot");
+
+				visuals.innerHTML = "Hot!!!";
+				guessInput.value = ""; // clear input field
+				
+			} else { // distance is the same
+				console.log("lukewarm. guess cat's outer the bag");
+
+				visuals.innerHTML = "Lukewarm Boss. Now how smart where you?";
+				guessInput.value = ""; // clear input field
+				
+			}
+			
+		} else { // correct guess
+			console.log("Calling correctGuess()");
+			hotOrCold.correctGuess(); // calls correct guess function
+		}
+	},
+
+	setMaxTemp: function () { // calculates the max temp based on secret answer
+		var maxTemp = Math.max( Math.abs(100 - answer), answer );
+		return maxTemp;
+	},
+	
+	setcurrentTemp: function () { // calculates current temp
+		var maxTemp = this.setMaxTemp();
+		var currentTemp = maxTemp - Math.abs(answer - verifiedGuess);
+		return currentTemp;
+	},
+
+
+	correctGuess: function () {
+		
+		if(counter === 1) { // correct answer at first guess
+			visuals.innerHTML = "Correct guess at first trial! Genius!!!";
+			console.log("Correct guess, at first trial! Brilliant!!!");
+		} else {
+			visuals.innerHTML = "Correct guess. Number of trials: " + counter + " trials.";
+			console.log("Correct guess. Number of trials: " + counter + " trials.");
+		}
+
+		hotOrCold.hideSubmitBtn();
+	},
+
+	hideSubmitBtn: function () { // hides submit button (called when answer is guessed correctly)
+		submitButton.style.display = 'none';
+	},
+
+	showSubmitBtn: function() { // shows submit button (called when a new game begins)
+		submitButton.style.display = 'inline-block';
+
+		hotOrCold.resetter(); // resets everything
 	}
-}
 
-var correctGuess = function () {
+};
 
-	// Correct answer at first guess
-	if(counter === 1) {
-		hotOrCold.innerHTML = "Correct guess at first trial! Genius!!!";
-		console.log("Correct guess, at first trial! Brilliant!!!");
-	} else {
-		hotOrCold.innerHTML = "Correct guess. Number of trials: " + counter + "trials.";
-		console.log("Correct guess. Number of trials: " + counter + "trials.");
-	}
+window.onload = hotOrCold.init();
 
-	hideSubmitBtn();
-}
-
-var hideSubmitBtn = function () {
-	submitButton.style.display = 'none';
-}
-
-var showSubmitBtn = function() {
-	submitButton.style.display = 'inline-block';
-
-	reset();
-}
-
-var setMaxTemp = function () {
-	var maxTemp = Math.max( Math.abs(100 - answer), answer );
-	return maxTemp;
-}
-var setcurrentTemp = function () {
-	var maxTemp = setMaxTemp();
-	var currentTemp = maxTemp - Math.abs(answer - verifiedGuess);
-	return currentTemp;
-}
-
-/*********************************************/
-/*Set click handlers
-/*********************************************/
-submitButton.onclick = beginProcess;
-newGameButton.onclick = showSubmitBtn;
