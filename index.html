@@ -7,6 +7,7 @@
 		<title>Hot or Cold</title>
 	</head>
 	<body>
+<<<<<<< HEAD
 		<header>
 			<h1>Hot or Cold</h1>
 		</header>
@@ -37,6 +38,39 @@
 			</div>
 		</section>
     
+=======
+		<div id="container">
+			<header>
+				<h1><span class="hot">Hot</span> or <span class="cold">Cold</span></h1>
+			</header>
+			<section id="description">
+				<p>Guess the super secret number by entering an integer between 0 and 100!</p>
+			</section>
+			<section id="main-game">
+				<fieldset>
+					<legend>Let's Play</legend>
+					<div id="guesstimate">
+						<label for="guess">Your guess</label>
+						<input type="text" id="guess" name="user_guess" maxlength="3" required>
+					</div>
+					<div id="buttons">
+						<button type="submit" id="submitBtn">Submit</button>
+						<button type="submit" id="newGameBtn">New game</button>
+					</div>
+					<div id="slider">
+						Cold 
+						<input id="slide" type="range" min="0" max="100" step="1" value="0">
+						Hot
+					</div>
+				</fieldset>
+
+
+				<div>
+				<p id="visuals">Whenever you're ready, BOSS!</p>
+				</div>
+			</section>
+    </div>
+>>>>>>> gh-pages
 		<script src="js/game.js"></script>
 	</body>
 </html>
