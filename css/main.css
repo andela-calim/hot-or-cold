@@ -17,11 +17,6 @@ body {
 	background-size: cover;
 }
 
-/*#container {
-	position: relative;
-	top: 70%;
-}
-*/
 h1 {
 	font-size: 2.5rem;
 	margin: 1%;
@@ -90,7 +85,3 @@ input[type='range'] {
 	background-image: -webkit-linear-gradient(left, blue, red);
 }
 /*******thermometer end*/
-
-#visuals {
-	padding-bottom: 15%;
-}
