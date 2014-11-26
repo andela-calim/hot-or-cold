@@ -10,16 +10,19 @@ body {
 	text-align: center;
 	font-size: 1.2rem;
 	color: #000;
-
-	/*background-color: purple;*/
 	background-image: -webkit-linear-gradient(left, blue, #E38C2D);
   background: -o-linear-gradient(left, blue, #E38C2D);
   background: -moz-linear-gradient(left, blue, #E38C2D);
   background: linear-gradient(to left, blue , #E38C2D);
 }
 
+#container {
+	border: 2px dotted #000;
+	margin: 2% 15%;
+}
+
 h1 {
-	font-size: 2.5rem;
+	font-size: 2.2rem;
 	margin: 1%;
 	padding: 2%;
 }
