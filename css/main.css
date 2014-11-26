@@ -1,21 +1,43 @@
 
 @import 'css-reset.css';
 
+/************************
+**************^GENERALS*/
 body {
 	width: 100%;
 	text-align: center;
 	font-size: 1.2rem;
-	/*background: url("../img/bg-main.jpg") no-repeat;
-	background-size: cover;*/
+	color: #fff;
+	background: url("../img/bg-main.jpg") no-repeat center;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+	background-size: cover;
 }
 h1 {
 	font-size: 2.5rem;
 	margin: 1%;
 	padding: 2%;
 }
+
 p {
 	font-size: 1.5rem;
 	padding: 1%;
+}
+
+/************************
+**************SPECIFICS*/
+
+fieldset {
+	margin: 1em auto;
+	border: 2px solid #000;
+	max-width: 25em;
+}
+
+legend {
+	text-align: left;
+	margin-left: 1em;
+	padding: 0 0.3em;
 }
 
 #guesstimate {
@@ -39,8 +61,16 @@ button {
 	font-size: 1rem;
 	padding: 0.5em 1.7em;
 	margin: 0.5em 0.5em 0.7em;
+	background-color: #6DB521;
+	border: none;
+	border-radius: 5px;
+}
+button:hover {
+	box-shadow: 0.3px 0.6px 1px 1px rgba(0,0,0,0.5), -0.3px -0.4px 1px 1px rgba(0,0,0,0.5);
 }
 
+/************************
+************Thermometer*/
 #slide {
 	width: 50%;
 }
@@ -51,15 +81,4 @@ input[type='range'] {
 	-webkit-border-radius: 5px;
 	background-image: -webkit-linear-gradient(left, blue, red);
 }
-
-fieldset {
-	margin: 1em auto;
-	border: 2px solid #000;
-	max-width: 25em;
-}
-
-legend {
-	text-align: left;
-	margin-left: 1em;
-	padding: 0 0.3em;
-}
+/*******************end*/
