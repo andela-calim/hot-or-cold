@@ -1,20 +1,6 @@
 
 @import 'css-reset.css';
 
-<<<<<<< HEAD
-body {
-	width: 100%;
-	text-align: center;
-	font-size: 1.2rem;
-	/*background: url("../img/bg-main.jpg") no-repeat;
-	background-size: cover;*/
-}
-h1 {
-	font-size: 2.5rem;
-	margin: 1%;
-	padding: 2%;
-}
-=======
 /************************
 **************^GENERALS*/
 body {
@@ -41,7 +27,6 @@ h1 {
 	padding: 2%;
 }
 
->>>>>>> gh-pages
 p {
 	font-size: 1.5rem;
 	padding: 1%;
